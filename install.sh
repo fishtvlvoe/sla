@@ -1,11 +1,11 @@
 #!/bin/bash
 # Smart LLM Agents (SLA) — One-Click Installer
-# Usage: curl -fsSL https://raw.githubusercontent.com/YOUR_USERNAME/smart-llm-agents/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/smart-llm-agents/main/install.sh | bash
 
 set -e
 
 SLA_VERSION="1.0.0"
-REPO="YOUR_USERNAME/smart-llm-agents"
+REPO="fishtvlvoe/smart-llm-agents"
 SKILLS_DIR="$HOME/.claude/skills"
 TMP_DIR="/tmp/sla-install-$$"
 
