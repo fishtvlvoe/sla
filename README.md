@@ -7,96 +7,100 @@
   <img src="https://img.shields.io/badge/version-1.0.0-orange?style=flat-square" alt="Version">
 </p>
 
-> **Intelligent multi-model development loop for Claude Code**
-> 智能多模型開發閉環 — 從規劃到 PR，全自動。
+<p align="center">
+  <a href="README.zh-TW.md">繁體中文</a> ·
+  <a href="README.md">English</a>
+</p>
+
+> Intelligent multi-model development loop for Claude Code — from planning to PR, fully automated.
 
 ---
 
-## ⚡ One-Click Install / 一鍵安裝
+## ⚡ One-Click Install
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/sla/main/install.sh | bash
 ```
 
-That's it. The installer auto-detects your environment and configures everything.
-安裝腳本自動偵測環境，設定所有必要工具。
+The installer auto-detects your environment and configures everything.
 
 ---
 
-## What is SLA? / 什麼是 SLA？
+## What is SLA?
 
-**English:** SLA is a Claude Code skill pack that routes tasks to the best AI model automatically. It covers the full development lifecycle: planning → TDD development → code review → PR → CI/CD monitoring — all in one closed loop.
+SLA is a Claude Code skill pack that routes tasks to the best AI model automatically. It covers the full development lifecycle: planning → TDD development → code review → PR → CI/CD monitoring — all in one closed loop.
 
-**中文：** SLA 是一套 Claude Code Skills 套件，根據任務類型自動選擇最合適的 AI 模型執行。涵蓋完整開發生命週期：規劃 → TDD 開發 → Code Review → PR → CI/CD 監控，形成完整閉環。
+**The problem it solves:** Different tasks need different models. Planning needs Claude Opus. Code analysis needs Kimi's long context. Quick edits don't need a powerful model at all. SLA handles this routing automatically — you just describe what you want to build.
 
 ---
 
-## Full Workflow / 完整流程
+## Full Workflow
 
 ```
-User: "I want to build X" / 用戶說「我要做 X」
+You: "I want to build X"
          ↓
-   /sla:plan  ──── Claude Opus 規劃 + claude-in-chrome 搜尋資料
-         ↓         Kimi 讀現有代碼理解架構
-   GSD PLAN.md + Epic + Stories 產出
+   /sla:plan  ──── Claude Opus plans the feature
+         ↓         claude-in-chrome searches docs if needed
+         ↓         Kimi reads existing code for context
+   Outputs: PLAN.md + Epics + Stories
          ↓
-   /sla:develop ── smart-route 自動分配：
-         │          簡單任務 → Ollama qwen3-coder:cloud
-         │          複雜邏輯 → deepseek-v3.1:cloud / Claude Sonnet
-         │          代碼分析 → Kimi MCP
+   /sla:develop ── smart-route assigns per task:
+         │          Simple tasks  → Ollama qwen3-coder:cloud
+         │          Complex logic → deepseek-v3.1:cloud / Claude Sonnet
+         │          Code analysis → Kimi MCP
          │
-         │  ┌── TDD 循環 ──────────────────┐
-         │  │  寫測試（紅）→ 寫實作（綠）  │
-         │  │  → 重構 → Playwright E2E     │
-         │  │  → 卡關？→ PUA 觸發突破      │
-         │  └──────────────────────────────┘
+         │  ┌── TDD Loop ─────────────────────────┐
+         │  │  Write test (red) → Implement (green) │
+         │  │  → Refactor → Playwright E2E          │
+         │  │  → Stuck? → PUA + YES.md kick in      │
+         │  └────────────────────────────────────────┘
          ↓
-   /sla:review ─── Kimi MCP 讀 diff → Code Review 報告
-         ↓         有問題回 develop，通過繼續
-   /sla:release ── git push → gh pr create → GHA 觸發
+   /sla:review ─── Kimi MCP reads git diff → Code Review report
+         ↓         Issues? Back to develop. Clean? Continue.
+   /sla:release ── git push → gh pr create → GitHub Actions triggered
          ↓
-   /sla:status ─── 監控 CI 結果
-                   成功 → 閉環完成 🎉
-                   失敗 → Kimi 讀 log → 分析根因 → 回 develop
+   /sla:status ─── Monitor CI results
+                   ✅ Pass → Loop complete 🎉
+                   ❌ Fail → Kimi reads log → Root cause → Back to develop
 ```
 
 ---
 
-## Commands / 指令說明
+## Commands
 
-**開發閉環 / Development Loop**
+**Development Loop**
 
-| Command | Description | 說明 |
-|---------|-------------|------|
-| `/smart-route "task"` | Auto-route to best model | 自動路由到最佳模型 |
-| `/sla:plan "feature"` | Plan with GSD integration | 規劃功能，串接 GSD |
-| `/sla:develop` | TDD development loop | TDD 開發循環 |
-| `/sla:review` | Kimi-powered code review | Kimi 驅動 Code Review |
-| `/sla:release` | Push PR + trigger CI | 推送 PR + 觸發 CI |
-| `/sla:status` | Monitor GitHub Actions | 監控 GitHub Actions |
+| Command | Description |
+|---------|-------------|
+| `/smart-route "task"` | Auto-route task to best model |
+| `/sla:plan "feature"` | Plan feature with GSD integration |
+| `/sla:develop` | TDD development loop |
+| `/sla:review` | Kimi-powered code review |
+| `/sla:release` | Push PR + trigger CI |
+| `/sla:status` | Monitor GitHub Actions |
 
-**CLAUDE.md 維護 / CLAUDE.md Maintenance**
+**CLAUDE.md Maintenance**
 
-| Command | Description | 說明 |
-|---------|-------------|------|
-| `AI.MD` / `蒸餾` | Optimize CLAUDE.md format | 優化格式，減少 token 消耗 |
-| `audit my CLAUDE.md` | Audit content accuracy | 審查內容是否與代碼一致（官方） |
-| `/revise-claude-md` | Capture session learnings | 補充本次 Session 學到的新東西 |
+| Command | Description |
+|---------|-------------|
+| `AI.MD` | Optimize CLAUDE.md format for AI consumption |
+| `audit my CLAUDE.md` | Audit content accuracy against codebase (official) |
+| `/revise-claude-md` | Capture session learnings into CLAUDE.md |
 
-**自我優化 / Self-Improvement**
+**Self-Improvement**
 
-| Command | Description | 說明 |
-|---------|-------------|------|
-| `/learn` | Auto-record pitfalls | 踩坑自動記錄（背景靜默執行） |
-| `/diary` | Write session diary | Session 結束後寫反思日記 |
-| `/reflect` | Weekly pattern analysis | 每週分析規律，建議更新 CLAUDE.md |
+| Command | Description |
+|---------|-------------|
+| `/learn` | Auto-record pitfalls in background |
+| `/diary` | Write session reflection diary |
+| `/reflect` | Weekly pattern analysis + suggest CLAUDE.md updates |
 
 ---
 
-## Model Routing / 模型分工
+## Model Routing
 
-| Role / 角色 | Primary / 首選 | Fallback | Use Case / 用途 |
-|------------|---------------|---------|----------------|
+| Role | Primary | Fallback | Use Case |
+|------|---------|---------|---------|
 | PLANNER | Claude Opus | deepseek:671b-cloud | Planning, architecture |
 | CODER | Claude Sonnet | qwen3-coder:480b-cloud | Implementation |
 | FAST_CODER | qwen3-coder:480b-cloud | qwen3:8b (local) | Quick changes, CSS |
@@ -107,7 +111,7 @@ User: "I want to build X" / 用戶說「我要做 X」
 
 ---
 
-## Requirements / 系統需求
+## Requirements
 
 | Tool | Required | Auto-installed |
 |------|----------|---------------|
@@ -117,16 +121,16 @@ User: "I want to build X" / 用戶說「我要做 X」
 | GSD Framework | Recommended | No (manual) |
 | Kimi API Key | Optional | No (guided) |
 | PUA Skill | Recommended | ✅ Yes |
+| YES.md Skill | Recommended | ✅ Yes |
 
 ---
 
-## Ollama Cloud Models / Ollama 雲端模型
+## Ollama Cloud Models
 
-SLA uses Ollama's cloud models — no local GPU required!
-SLA 使用 Ollama 雲端模型，不需要本機 GPU！
+SLA uses Ollama's cloud models — no local GPU required.
 
 ```bash
-# Used by SLA automatically / SLA 自動使用
+# Used by SLA automatically
 ollama run qwen3-coder:480b-cloud    # Fast coding
 ollama run deepseek-v3.1:671b-cloud  # Complex reasoning
 ollama run glm-4.6:cloud             # Chinese reasoning
@@ -134,21 +138,29 @@ ollama run glm-4.6:cloud             # Chinese reasoning
 
 ---
 
-## PUA Integration / PUA 整合
+## Anti-Failure Mechanisms
 
-SLA integrates [tanweai/pua](https://github.com/tanweai/pua) to prevent AI from giving up.
-SLA 整合 PUA Skill，確保 AI 不輕易放棄：
+SLA bundles two complementary skills to keep AI on track:
 
+**[PUA](https://github.com/tanweai/pua)** — Prevents giving up:
 ```
-Failure × 2 → L1: "你這個 bug 都解決不了？" → Switch approach
-Failure × 3 → L2: "底層邏輯是什麼？" → WebSearch + read source
-Failure × 4 → L3: "3.25 考核" → 7-item systematic checklist
-Failure × 5 → L4: "畢業警告" → All-in mode
+Failure × 2 → L1: Mild pressure → Switch approach
+Failure × 3 → L2: WebSearch + read source code
+Failure × 4 → L3: 7-item systematic checklist
+Failure × 5 → L4: All-in mode
 ```
+
+**[YES.md](https://github.com/sstklen/yes.md)** — Enforces correctness:
+- Evidence before conclusions (no guessing)
+- Backup before modifying files
+- Verify after every fix
+- Ripple check: look for related issues
+
+> PUA keeps you going. YES.md keeps you going correctly.
 
 ---
 
-## Uninstall / 移除
+## Uninstall
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/sla/main/uninstall.sh | bash
@@ -156,17 +168,16 @@ curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/sla/main/uninstall.sh | 
 
 ---
 
-## Contributing / 貢獻
+## Contributing
 
 PRs welcome! Please read our [contributing guide](docs/CONTRIBUTING.md).
-歡迎 PR！請先閱讀[貢獻指南](docs/CONTRIBUTING.md)。
 
 ---
 
 ## Credits
 
 - [tanweai/pua](https://github.com/tanweai/pua) — PUA debugging skill
-- [sstklen/yes.md](https://github.com/sstklen/yes.md) — Engineering discipline skill (YES.md)
+- [sstklen/yes.md](https://github.com/sstklen/yes.md) — Engineering discipline skill
 - [sstklen/ai-md](https://github.com/sstklen/ai-md) — CLAUDE.md AI-native optimizer
 - [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) — CLAUDE.md management (official)
 - [GSD Framework](https://github.com/ezyang/get-shit-done) — Development workflow
