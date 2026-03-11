@@ -1,0 +1,42 @@
+{
+  "version": "1.0.0",
+  "description": "SLA Model Role Registry — defines which model handles which task type",
+  "roles": {
+    "PLANNER": {
+      "description": "Planning, architecture design, high-level decisions",
+      "primary": "claude-opus",
+      "fallback": ["ollama:deepseek-v3.1:671b-cloud", "claude-sonnet"]
+    },
+    "CODER": {
+      "description": "General implementation, bug fixes",
+      "primary": "claude-sonnet",
+      "fallback": ["ollama:qwen3-coder:480b-cloud", "ollama:qwen3:8b"]
+    },
+    "FAST_CODER": {
+      "description": "Simple changes, quick tasks, CSS/HTML",
+      "primary": "ollama:qwen3-coder:480b-cloud",
+      "fallback": ["ollama:qwen3:8b", "claude-haiku"]
+    },
+    "ANALYZER": {
+      "description": "Code analysis, architecture understanding, large file reading",
+      "primary": "kimi",
+      "fallback": ["claude-sonnet", "ollama:deepseek-v3.1:671b-cloud"]
+    },
+    "REVIEWER": {
+      "description": "Code review, diff analysis",
+      "primary": "kimi",
+      "fallback": ["claude-sonnet"]
+    },
+    "BROWSER": {
+      "description": "Web search, UI validation",
+      "primary": "claude-in-chrome",
+      "fallback": ["playwright"]
+    },
+    "DEBUGGER": {
+      "description": "Stuck debugging, persistent problem solving (PUA-driven)",
+      "primary": "claude-sonnet",
+      "fallback": ["ollama:deepseek-v3.1:671b-cloud"],
+      "skill_trigger": "pua"
+    }
+  }
+}
