@@ -64,6 +64,8 @@ User: "I want to build X" / 用戶說「我要做 X」
 
 ## Commands / 指令說明
 
+**開發閉環 / Development Loop**
+
 | Command | Description | 說明 |
 |---------|-------------|------|
 | `/smart-route "task"` | Auto-route to best model | 自動路由到最佳模型 |
@@ -72,7 +74,22 @@ User: "I want to build X" / 用戶說「我要做 X」
 | `/sla:review` | Kimi-powered code review | Kimi 驅動 Code Review |
 | `/sla:release` | Push PR + trigger CI | 推送 PR + 觸發 CI |
 | `/sla:status` | Monitor GitHub Actions | 監控 GitHub Actions |
-| `AI.MD` / `蒸餾` | Optimize CLAUDE.md format | 優化 CLAUDE.md 減少 token |
+
+**CLAUDE.md 維護 / CLAUDE.md Maintenance**
+
+| Command | Description | 說明 |
+|---------|-------------|------|
+| `AI.MD` / `蒸餾` | Optimize CLAUDE.md format | 優化格式，減少 token 消耗 |
+| `audit my CLAUDE.md` | Audit content accuracy | 審查內容是否與代碼一致（官方） |
+| `/revise-claude-md` | Capture session learnings | 補充本次 Session 學到的新東西 |
+
+**自我優化 / Self-Improvement**
+
+| Command | Description | 說明 |
+|---------|-------------|------|
+| `/learn` | Auto-record pitfalls | 踩坑自動記錄（背景靜默執行） |
+| `/diary` | Write session diary | Session 結束後寫反思日記 |
+| `/reflect` | Weekly pattern analysis | 每週分析規律，建議更新 CLAUDE.md |
 
 ---
 
@@ -149,7 +166,9 @@ PRs welcome! Please read our [contributing guide](docs/CONTRIBUTING.md).
 ## Credits
 
 - [tanweai/pua](https://github.com/tanweai/pua) — PUA debugging skill
+- [sstklen/yes.md](https://github.com/sstklen/yes.md) — Engineering discipline skill (YES.md)
 - [sstklen/ai-md](https://github.com/sstklen/ai-md) — CLAUDE.md AI-native optimizer
+- [anthropics/claude-plugins-official](https://github.com/anthropics/claude-plugins-official) — CLAUDE.md management (official)
 - [GSD Framework](https://github.com/ezyang/get-shit-done) — Development workflow
 - [Kimi MCP](https://platform.moonshot.cn) — Long-context analysis
 
