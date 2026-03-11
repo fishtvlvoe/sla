@@ -48,7 +48,23 @@ for skill_dir in "$TMP_DIR/skills"/*/; do
   echo -e "  ${GREEN}✅${NC} $skill_name"
 done
 
-# ── Step 4: Done ─────────────────────────────────────
+# ── Step 4: Install AI.MD ────────────────────────────
+echo ""
+echo "🧠 安裝 AI.MD（CLAUDE.md 優化工具）..."
+mkdir -p "$SKILLS_DIR/ai-md"
+curl -fsSL \
+  https://raw.githubusercontent.com/sstklen/ai-md/main/SKILL.md \
+  -o "$SKILLS_DIR/ai-md/SKILL.md" --silent
+echo -e "  ${GREEN}✅${NC} ai-md"
+
+echo ""
+read -p "🔧 要現在用 AI.MD 優化你的 CLAUDE.md 嗎？（建議！可減少 token 消耗）[y/N]: " OPT_AIMD
+if [[ "$OPT_AIMD" =~ ^[Yy]$ ]]; then
+  echo ""
+  echo "✅ 請在 Claude Code 中輸入「AI.MD」或「蒸餾」即可開始優化。"
+fi
+
+# ── Step 5: Done ─────────────────────────────────────
 echo ""
 echo -e "${GREEN}══════════════════════════════════════════${NC}"
 echo -e "${GREEN}✅ SLA 安裝完成！${NC}"
@@ -60,6 +76,7 @@ echo "  /sla:develop  — TDD 開發循環"
 echo "  /sla:review   — Code Review（Kimi 驅動）"
 echo "  /sla:release  — 推送 PR + GitHub Actions"
 echo "  /sla:status   — 追蹤 CI/CD 狀態"
+echo "  AI.MD / 蒸餾  — 優化 CLAUDE.md 格式"
 echo ""
 echo "📖 文件：https://github.com/$REPO"
 echo -e "${GREEN}══════════════════════════════════════════${NC}"

@@ -148,6 +148,7 @@ PRs welcome! Please read our [contributing guide](docs/CONTRIBUTING.md).
 ## Credits
 
 - [tanweai/pua](https://github.com/tanweai/pua) — PUA debugging skill
+- [sstklen/ai-md](https://github.com/sstklen/ai-md) — CLAUDE.md AI-native optimizer
 - [GSD Framework](https://github.com/ezyang/get-shit-done) — Development workflow
 - [Kimi MCP](https://platform.moonshot.cn) — Long-context analysis
 
