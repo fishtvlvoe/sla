@@ -15,7 +15,7 @@
 ## ⚡ One-Click Install / 一鍵安裝
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/smart-llm-agents/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/sla/main/install.sh | bash
 ```
 
 That's it. The installer auto-detects your environment and configures everything.
@@ -151,7 +151,7 @@ Failure × 5 → L4: "畢業警告" → All-in mode
 ## Uninstall / 移除
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/smart-llm-agents/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/fishtvlvoe/sla/main/uninstall.sh | bash
 ```
 
 ---

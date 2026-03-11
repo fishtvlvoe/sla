@@ -13,7 +13,7 @@
 ## 專案結構目標
 
 ```
-smart-llm-agents/
+sla/
 ├── README.md                    # 雙語說明（EN + ZH-TW）
 ├── install.sh                   # 一鍵安裝腳本
 ├── uninstall.sh                 # 一鍵移除腳本
@@ -370,7 +370,7 @@ echo "🚀 Smart LLM Agents (SLA) 安裝程式"
 echo "======================================"
 
 SLA_DIR="$HOME/.claude/skills"
-REPO_URL="https://github.com/fishtvlvoe/smart-llm-agents"
+REPO_URL="https://github.com/fishtvlvoe/sla"
 
 # 1. 下載/更新 SLA 檔案
 if [[ -d "/tmp/sla-install" ]]; then rm -rf /tmp/sla-install; fi
