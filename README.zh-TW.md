@@ -9,7 +9,8 @@
 
 <p align="center">
   <a href="README.md">English</a> ·
-  <a href="README.zh-TW.md">繁體中文</a>
+  <a href="README.zh-TW.md">繁體中文</a> ·
+  <a href="README.zh-CN.md">简体中文</a>
 </p>
 
 > 智能多模型開發閉環套件 — 從規劃到 PR，全自動。
