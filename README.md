@@ -72,6 +72,7 @@ User: "I want to build X" / 用戶說「我要做 X」
 | `/sla:review` | Kimi-powered code review | Kimi 驅動 Code Review |
 | `/sla:release` | Push PR + trigger CI | 推送 PR + 觸發 CI |
 | `/sla:status` | Monitor GitHub Actions | 監控 GitHub Actions |
+| `AI.MD` / `蒸餾` | Optimize CLAUDE.md format | 優化 CLAUDE.md 減少 token |
 
 ---
 
